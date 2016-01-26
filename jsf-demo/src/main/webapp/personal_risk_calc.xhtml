@@ -1,0 +1,100 @@
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	style="background-color: darkcyan">
+
+	<h:head>
+		
+	</h:head>
+	<h:body>
+		
+		<h:form prependId="false">
+			<h:panelGrid id="header" width="100%" style="position: fixed; top: 10; width: 100%;">
+				<h:outputText value="Personal Risk Calculator"
+					style="font-size:-webkit-xxx-large; margin-left:50px;" />
+				<p:separator />	
+			</h:panelGrid>
+		
+			<h:panelGrid id="content" columns="1" width="100%" style="margin-top:100px; margin-left:50px;">
+			
+				<style type="text/css">
+					.ui-steps .ui-steps-item {
+					    width: 24%;
+					}
+					 
+					.ui-state-highlight {
+					    text-shadow: none !important;
+					}
+					 
+					.ui-steps.custom {
+					    margin-bottom: 30px;
+					}
+					 
+					.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+					    height: 10px;
+					    padding: 0 1em;
+					}
+					 
+					.ui-steps.custom .ui-steps-item .ui-steps-number {
+					    background-color: #0081c2;
+					    color: #FFFFFF;
+					    display: inline-block;
+					    width: 30px;
+					    border-radius: 10px;
+					    margin-top: -10px;
+					    margin-bottom: 10px;
+					}
+					</style>
+			
+				<h2>Please provide below details</h2>
+				<h:outputText value="STep :- #{param['step']}"/>
+				<p:steps styleClass="custom" activeIndex="#{(empty param['step']) ? 1 : param['step']}"
+					readonly="false">
+					<p:menuitem outcome="personal_risk_calc.xhtml">
+						<f:param name="step" value="1"/>
+					</p:menuitem>
+				    <p:menuitem outcome="personal_risk_calc.xhtml">
+				    	<f:param name="step" value="2"/>
+				    </p:menuitem>
+				    <p:menuitem outcome="personal_risk_calc.xhtml">
+				    	<f:param name="step" value="3"/>
+				    </p:menuitem>
+				</p:steps>
+				
+				<br />
+				
+				<h:panelGrid id="questionnaireGrid">
+					<h:panelGrid rendered="#{empty param['step'] || param['step'] == 1}">
+						PERSONAL			
+						<p:commandButton value="Next" action="personal_risk_calc.xhtml" ajax="false">
+							<f:param name="step" value="2"/>
+						</p:commandButton>
+							
+					</h:panelGrid>
+					
+					<h:panelGrid rendered="#{param['step'] == 2}">
+						HEALTH	
+						<p:commandButton value="Next" action="personal_risk_calc.xhtml" ajax="false">
+							<f:param name="step" value="3"/>
+						</p:commandButton>			
+					</h:panelGrid>
+					
+					<h:panelGrid rendered="#{param['step'] == 3}">
+						FINANCIAL		
+						<p:commandButton value="Calculate Risk" action="#{demoController.calculateRisk}" ajax="false"/>		
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<br />
+				<br />
+			</h:panelGrid>
+	
+			<h:panelGrid id="footer" width="100%" style="position: fixed; bottom: 10; width: 100%; margin-left:50px;">
+				Copyright to step-talentica team.
+			</h:panelGrid>
+	
+		</h:form>
+		
+	</h:body>
+</html>
