@@ -78,7 +78,6 @@
 
   function onAnalyzeClick() {
 	    $.getJSON('problem', function(data) {
-	    	alert(JSON.stringify(data, null, 2));
 	    	showTradeoffAnalytcsWidget(data);
 	      });
   }
