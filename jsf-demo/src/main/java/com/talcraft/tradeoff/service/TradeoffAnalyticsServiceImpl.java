@@ -18,14 +18,14 @@ import com.talcraft.util.JsonHelper;
 
 public class TradeoffAnalyticsServiceImpl implements TradeoffAnalyticsService {
 
-	private static final String BASE_URL = "https://gateway.watsonplatform.net/tradeoff-analytics/api/v1/";
-	private static final String username = "a630a7b2-4a7a-43b7-aabd-752b973a3220";
-	private static final String password = "SX4n53k3JMWd";
+	public static final String BASE_URL = "https://gateway.watsonplatform.net/tradeoff-analytics/api";
+	public static final String username = "fd548db1-624f-4169-a2f6-6c2e46e5e5a3";
+	public static final String password = "LdgOHNJVT9xO";
 
 	@Override
 	public String getResolutionsForProblem(Problem problem, Options options) {
 		try {
-			URI uri = new URI(BASE_URL + "dilemmas").normalize();
+			URI uri = new URI(BASE_URL + "/v1/dilemmas").normalize();
 
 			StringBuilder requestBuilder = new StringBuilder();
 			String problemString = JsonHelper.jsonToString(problem);

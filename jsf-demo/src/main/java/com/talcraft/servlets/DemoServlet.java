@@ -23,15 +23,13 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.util.EntityUtils;
 
+import com.talcraft.tradeoff.service.TradeoffAnalyticsServiceImpl;
+
 @WebServlet({ "demo/events", "demo/dilemmas" })
 @MultipartConfig
 public class DemoServlet extends HttpServlet {
 	private static Logger logger = Logger.getLogger(DemoServlet.class.getName());
 	private static final long serialVersionUID = 1L;
-
-	private String baseURL = "https://gateway.watsonplatform.net/tradeoff-analytics/api";
-	private String username = "a630a7b2-4a7a-43b7-aabd-752b973a3220";
-	private String password = "SX4n53k3JMWd";
 
 	/**
 	 * Forward the request to the index.jsp file
@@ -71,7 +69,7 @@ public class DemoServlet extends HttpServlet {
 		try {
 			String reqURI = req.getRequestURI();
 			String endpoint = reqURI.substring(reqURI.lastIndexOf('/') + 1);
-			String url = baseURL + "/v1/" + endpoint;
+			String url = TradeoffAnalyticsServiceImpl.BASE_URL + "/v1/" + endpoint;
 			URI uri = new URI(url).normalize();
 
 			Request newReq = Request.Post(uri);
@@ -112,7 +110,7 @@ public class DemoServlet extends HttpServlet {
 	}
 
 	private Executor buildExecutor(URI url) {
-		return Executor.newInstance().auth(username, password)
+		return Executor.newInstance().auth(TradeoffAnalyticsServiceImpl.username, TradeoffAnalyticsServiceImpl.password)
 				.authPreemptive(new HttpHost(url.getHost(), url.getPort(), url.getScheme()));
 	}
 }
