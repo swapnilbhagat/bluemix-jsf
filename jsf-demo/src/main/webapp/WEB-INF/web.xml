@@ -19,6 +19,28 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Application Servlet</servlet-name>
+		<servlet-class>com.talcraft.servlets.DemoServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Application Servlet</servlet-name>
+		<url-pattern>/demo/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ProductRecommendationServlet</servlet-name>
+		<servlet-class>com.talcraft.servlets.ProductsRecommendationServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductRecommendationServlet</servlet-name>
+		<url-pattern>/problem/*</url-pattern>
+	</servlet-mapping>
+	
+	
 
 	<listener>
 		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
